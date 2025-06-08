@@ -24,4 +24,28 @@ This program is written using **object-oriented programming principles** and sat
 - ✔️ Executable from the terminal with input validation
 
 ## 🧱 Project Structure
+src/
+├── Main.java
+├── Tavolo.java # Abstract base class
+├── TavoloInterno.java # Indoor table (subclass)
+├── TavoloEsterno.java # Outdoor table (subclass)
+├── Prenotazione.java # Booking information
+└── Ristorante.java # Central class that manages everything
 
+
+## 💻 Technologies Used
+
+- Language: **Java 17+**
+- IDE: **IntelliJ IDEA** (recommended)
+- Build & run: via terminal or IDE
+
+## 🚀 How to Run
+
+1. Clone the repository
+2. Open it in IntelliJ or your preferred IDE
+3. Compile and run `Main.java`
+4. Use the on-screen menu to manage bookings
+
+## 🧑‍🎓 About the Exam
+
+This project was created as part of the final submission for the **Programming** portion of the course. The code is fully original and developed in compliance with the university’s guidelines for the 2024/2025 academic year.

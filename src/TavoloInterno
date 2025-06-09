@@ -1,0 +1,10 @@
+ //sotto calsse
+    public class TavoloInterno extends Tavolo {
+        private boolean vicinoFinestra;
+
+        public TavoloInterno(int numero, int capienza, boolean vicinoFinestra) {
+            super(numero, capienza);
+            this.vicinoFinestra = vicinoFinestra;
+        }
+
+    }

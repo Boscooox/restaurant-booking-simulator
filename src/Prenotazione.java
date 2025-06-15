@@ -43,4 +43,19 @@ public class Prenotazione {
         return "Prenotazione: " + nomeCliente + ", " + data + ", " + numPersone + " persone, Tavolo #" + numeroTavolo;
     }
 
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setNumPersone(int numPersone) {
+        this.numPersone = numPersone;
+    }
+
+    public void setNumeroTavolo(int numeroTavolo) {
+        this.numeroTavolo = numeroTavolo;
+    }
 }

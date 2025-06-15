@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.FileWriter;
@@ -83,5 +85,35 @@ public class Ristorante {
             System.out.println("Errore durante il salvataggio: " + e.getMessage());
         }
     }
+    public void caricaPrenotazioniDaFile(String nomeFile) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(nomeFile))) {
+            String riga;
+            while ((riga = reader.readLine()) != null) {
+                String[] parti = riga.split(",");
+                if (parti.length == 4) {
+                   String nome = parti[0].split(":")[1].trim();
+                   String data = parti[1].trim();
+                   int numPersone = Integer.parseInt(parti[2].split(" ")[1].trim());
+                   int numeroTavolo = Integer.parseInt(parti[3].split(" ")[2].substring(1));
+                    Prenotazione p = new Prenotazione(nome, data, numPersone, numeroTavolo);
+                    prenotazioni.add(p);
+
+                    // Imposta il tavolo come occupato
+                    for (Tavolo t : tavoli) {
+                        if (t.getNumero() == numeroTavolo) {
+                            t.setDisponibile(false);
+                            break;
+                        }
+                    }
+                }
+            }
+            System.out.println("Prenotazioni caricate da file.");
+        } catch (IOException e) {
+            System.out.println("Errore durante la lettura del file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Errore nel formato del file: " + e.getMessage());
+        }
+    }
+
 }
 

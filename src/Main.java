@@ -16,6 +16,18 @@
             ristorante.aggiungiTavolo(new TavoloEsterno(2, 6, true));
             ristorante.aggiungiTavolo(new TavoloInterno(3, 2, false));
 
+
+            System.out.print("Vuoi caricare dal file si o no: ");
+            String carica = input.nextLine();
+            if (carica.equals("no")) {
+                System.out.print("procedo senza caricare");
+            } else {
+                System.out.print("inserisci il nome del file: ");
+                String nomeFile = input.nextLine();
+                ristorante.caricaPrenotazioniDaFile(nomeFile);
+            }
+
+
             int scelta;
 
             do {
@@ -54,6 +66,7 @@
                         String nomeAnnulla = input.nextLine();
                         ristorante.annullaPrenotazione(nomeAnnulla);
                         break;
+
 
                     case 4:
                         ristorante.mostraPrenotazioni();

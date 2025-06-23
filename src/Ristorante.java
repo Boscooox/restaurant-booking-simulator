@@ -45,6 +45,20 @@ public class Ristorante {
         System.out.println("Nessun tavolo disponibile per " + numPersone + " persone.");
     }
 
+    // Overload prenotazione specificando il numero del tavolo
+    public void creaPrenotazione(String nomeCliente, String data, int numPersone, int numeroTavolo) {
+        for (Tavolo t : tavoli) {
+            if (t.isDisponibile() && t.getNumero() == numeroTavolo && t.getCapienza() >= numPersone) {
+                Prenotazione p = new Prenotazione(nomeCliente, data, numPersone, numeroTavolo);
+                prenotazioni.add(p);
+                t.setDisponibile(false);
+                System.out.println("Prenotazione su tavolo specifico creata: " + p);
+                return;
+            }
+        }
+        System.out.println("Tavolo #" + numeroTavolo + " non disponibile o troppo piccolo.");
+    }
+
     // Metodo per mostrare tutte le prenotazioni
     public void mostraPrenotazioni() {
         if (prenotazioni.isEmpty()) {
@@ -85,6 +99,8 @@ public class Ristorante {
             System.out.println("Errore durante il salvataggio: " + e.getMessage());
         }
     }
+
+    // Metodo per caricare le prenotazioni da file
     public void caricaPrenotazioniDaFile(String nomeFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(nomeFile))) {
             String riga;

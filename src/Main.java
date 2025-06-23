@@ -1,9 +1,5 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
-      //ciclo con il menù numeraro
-      //interazione con lo scanner (prendere l'inputo)
-      //invoca i metodi della classe ristorante
+    import java.io.File;
     import java.util.Scanner;
 
     public class Main {
@@ -11,22 +7,35 @@
             Scanner input = new Scanner(System.in);
             Ristorante ristorante = new Ristorante();
 
-            // Tavoli iniziali (puoi personalizzarli)
+            // Tavoli iniziali
             ristorante.aggiungiTavolo(new TavoloInterno(1, 4, true));
             ristorante.aggiungiTavolo(new TavoloEsterno(2, 6, true));
             ristorante.aggiungiTavolo(new TavoloInterno(3, 2, false));
 
 
-            System.out.print("Vuoi caricare dal file si o no: ");
-            String carica = input.nextLine();
-            if (carica.equals("no")) {
-                System.out.print("procedo senza caricare");
-            } else {
-                System.out.print("inserisci il nome del file: ");
-                String nomeFile = input.nextLine();
-                ristorante.caricaPrenotazioniDaFile(nomeFile);
+            String carica = "";
+
+            while (!carica.equalsIgnoreCase("si") && !carica.equalsIgnoreCase("no")) {
+                System.out.print("Vuoi caricare dal file? (si/no): ");
+                carica = input.nextLine();
+
+                if (!carica.equalsIgnoreCase("si") && !carica.equalsIgnoreCase("no")) {
+                    System.out.println("Risposta non valida. Scrivi 'si' oppure 'no'.");
+                }
             }
 
+            if (carica.equalsIgnoreCase("no")) {
+                System.out.println("Procedo senza caricare.");
+            } else {
+                System.out.print("Inserisci il nome del file: ");
+                String nomeFile = input.nextLine();
+                File f = new File(nomeFile);
+                if (f.exists() && !f.isDirectory()) {
+                    ristorante.caricaPrenotazioniDaFile(nomeFile);
+                } else {
+                    System.out.println("Il file non esiste.");
+                }
+            }
 
             int scelta;
 
@@ -37,6 +46,7 @@
                 System.out.println("3. Annulla prenotazione");
                 System.out.println("4. Mostra tutte le prenotazioni");
                 System.out.println("5. Salva prenotazioni su file");
+                System.out.println("6. Crea prenotazione su tavolo specifico");
                 System.out.println("0. Esci");
                 System.out.print("Scelta: ");
                 scelta = input.nextInt();
@@ -76,6 +86,21 @@
                         System.out.print("Nome file (es. prenotazioni.txt): ");
                         String nomeFile = input.nextLine();
                         ristorante.salvaPrenotazioniSuFile(nomeFile);
+                        break;
+
+                    case 6:
+                        System.out.print("Nome cliente: ");
+                        String nomeCliente6 = input.nextLine();
+                        System.out.print("Data: ");
+                        String data6 = input.nextLine();
+                        System.out.print("Numero persone: ");
+                        int persone6 = input.nextInt();
+                        input.nextLine(); // consuma newline
+                        System.out.print("Numero tavolo: ");
+                        int numeroTavolo = input.nextInt();
+                        input.nextLine();
+
+                        ristorante.creaPrenotazione(nomeCliente6, data6, persone6, numeroTavolo);
                         break;
 
                     case 0:

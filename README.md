@@ -1,4 +1,4 @@
-# Restaurant Booking Simulator  (NOT COMPLETE)
+# Restaurant Booking Simulator  
 
 This project was developed for the university exam in **Fundamentals of Computer Science** – Part B: **Programming**  
 Academic Year: **2024/2025**
